@@ -6,7 +6,7 @@ plugins {
     id 'maven'
     id 'signing'
     id 'io.codearte.nexus-staging' version '0.11.0'
-    id 'pl.allegro.tech.build.axion-release' version '1.8.1'
+    id 'pl.allegro.tech.build.axion-release' version '1.9.0'
 }
 
 scmVersion {
@@ -15,12 +15,11 @@ scmVersion {
     }
 }
 
-group 'com.github.mkopylec'
+group = 'com.github.mkopylec'
 archivesBaseName = name
-version scmVersion.version
+version = scmVersion.version
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -28,18 +27,18 @@ repositories {
 
 dependencies {
 
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.10'
-    compile group: 'org.springframework', name: 'spring-web', version: '4.3.12.RELEASE'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.5'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.0.5.RELEASE'
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.5.8.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.0.1.RELEASE'
 
-    compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.8.RELEASE'
-    compileOnly group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '1.5.8.RELEASE'
+    compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.1.RELEASE'
+    compileOnly group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.0.1.RELEASE'
 
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.8.RELEASE'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.8.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.1.RELEASE'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.1.RELEASE'
     testCompile group: 'org.spockframework', name: 'spock-spring', version: '1.1-groovy-2.4'
-    testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: '2.10.1'
+    testCompile group: 'com.github.tomakehurst', name: 'wiremock', version: '2.17.0'
 }
 
 configurations {
@@ -48,7 +47,7 @@ configurations {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.3'
+    gradleVersion = '4.7'
 }
 
 task javadocJar(type: Jar) {
@@ -121,6 +120,10 @@ publishing {
             artifact sourceJar
         }
     }
+}
+
+jacoco {
+    toolVersion = '0.8.1'
 }
 
 jacocoTestReport {

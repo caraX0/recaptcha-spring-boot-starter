@@ -19,15 +19,10 @@ public class ValidationConfiguration {
         this.recaptcha = recaptcha;
     }
 
+    // TODO timeouts
     @Bean
     @ConditionalOnMissingBean
-    public RecaptchaValidator userResponseValidator(RestTemplate restTemplate) {
-        return new RecaptchaValidator(restTemplate, recaptcha);
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
+    public RecaptchaValidator userResponseValidator() {
+        return new RecaptchaValidator(new RestTemplate(), recaptcha);
     }
 }
